@@ -1,7 +1,7 @@
 base:
   project: e-jagriti-project
   random_state: 42
-  target_col: TARGET
+  target_col: case_category_id
 
 data_source:
   s3_source: data_given/new_consumer.csv
