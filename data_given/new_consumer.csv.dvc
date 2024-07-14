@@ -1,0 +1,5 @@
+outs:
+- md5: 2e05a03fbdbeb3eefb04de6a10e24ec0
+  size: 106082638
+  hash: md5
+  path: new_consumer.csv
