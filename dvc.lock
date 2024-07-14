@@ -1,0 +1,42 @@
+schema: '2.0'
+stages:
+  load_data:
+    cmd: python src/load_data.py --config=params.yaml
+    deps:
+    - path: data_given/new_consumer.csv
+      hash: md5
+      md5: 2e05a03fbdbeb3eefb04de6a10e24ec0
+      size: 106082638
+    - path: src/get_data.py
+      hash: md5
+      md5: f1fd18362ebd805f15f4bceaa7fd8ea6
+      size: 684
+    - path: src/load_data.py
+      hash: md5
+      md5: 2d71c2292dd7ad5945b5fef93ab1e5ad
+      size: 504
+    outs:
+    - path: data/raw/new_consumer.csv
+      hash: md5
+      md5: 0264c1e03667cafa723b3f27a980e0a5
+      size: 94114686
+  split_data:
+    cmd: python src/split_data.py --config=params.yaml
+    deps:
+    - path: data/raw/new_consumer.csv
+      hash: md5
+      md5: 0264c1e03667cafa723b3f27a980e0a5
+      size: 94114686
+    - path: src/split_data.py
+      hash: md5
+      md5: 6ce511640a50a3c191077a96d8668321
+      size: 1003
+    outs:
+    - path: data/processed/test_new_consumer.csv
+      hash: md5
+      md5: edc563cd637b9dc19bf483dfb3bcdb37
+      size: 18822896
+    - path: data/processed/train_new_consumer.csv
+      hash: md5
+      md5: b6547762e176745e8bf835fe493b9424
+      size: 75291885
