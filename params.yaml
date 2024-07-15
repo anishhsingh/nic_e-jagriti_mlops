@@ -19,6 +19,14 @@ estimators:
     params:
       alpha: 0.88
       l1_ratio: 0.89
+  Ridge:
+    params:
+      alpha_ridge: 1.0
+  DecisionTree:
+    params:
+      max_depth: 5
+      min_samples_split: 2
+
 
 model_dir: saved_models
 
