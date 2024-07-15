@@ -1,18 +1,35 @@
-stages:
-  load_data:
-    cmd: python src/load_data.py --config=params.yaml
-    deps:
+stages :
+  load_data :
+    cmd : python src/load_data.py --config=params.yaml
+    deps :
     - src/get_data.py
     - src/load_data.py
     - data_given/new_consumer.csv
-    outs:
+    outs :
     - data/raw/new_consumer.csv
   
-  split_data:
+  split_data :
     cmd: python src/split_data.py --config=params.yaml
-    deps:
+    deps :
     - src/split_data.py
     - data/raw/new_consumer.csv
-    outs:
+    outs :
     - data/processed/train_new_consumer.csv
     - data/processed/test_new_consumer.csv
+  
+  train_and_evaluate :
+    cmd : python src/train_and_evaluate.py --config=params.yaml
+    deps :
+     - data/processed/train_new_consumer.csv
+     - data/processed/test_new_consumer.csv
+     - src/train_and_evaluate.py
+    params :
+    - estimators.ElasticNet.params.alpha
+    - estimators.ElasticNet.params.l1_ratio
+    metrics :
+    - report/scores.json
+        
+    - report/params.json
+        
+    outs :
+    - saved_models/models.joblib
